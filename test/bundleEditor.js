@@ -9033,7 +9033,7 @@
 /* 64 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"prefix\"></div>\r\n<div class=\"content\">\r\n\t<div class=\"lastOne Pnode ActionNodePresentation\">Drop node</div>\r\n</div>\r\n<div class=\"suffix\"></div>\r\n"
+	module.exports = "<div class=\"prefix\"></div>\n<div class=\"content\">\n\t<div class=\"lastOne Pnode ActionNodePresentation\">Drop node</div>\n</div>\n<div class=\"suffix\"></div>\n"
 
 /***/ },
 /* 65 */
@@ -9209,7 +9209,7 @@
 /* 71 */
 /***/ function(module, exports) {
 
-	module.exports = "<img class=\"action_symbol\"></img>\r\n<div class=\"action_description\">\r\n\t<div class=\"actionName\">Action name</div>\r\n\t<div class=\"selector\">\r\n\t\tDrop target\r\n\t</div>\r\n</div>"
+	module.exports = "<img class=\"action_symbol\"></img>\n<div class=\"action_description\">\n\t<div class=\"actionName\">Action name</div>\n\t<div class=\"selector\">\n\t\tDrop target\n\t</div>\n</div>"
 
 /***/ },
 /* 72 */
@@ -9356,7 +9356,7 @@
 /* 76 */
 /***/ function(module, exports) {
 
-	module.exports = "<img class=\"event_symbol\"></img>\r\n<div class=\"event_description event\">\r\n\t<p class=\"eventName\">Event name</p>\r\n\t<p class=\"selector\">Drop sources here</p>\r\n</div>"
+	module.exports = "<img class=\"event_symbol\"></img>\n<div class=\"event_description event\">\n\t<p class=\"eventName\">Event name</p>\n\t<p class=\"selector\">Drop sources here</p>\n</div>"
 
 /***/ },
 /* 77 */
@@ -9494,7 +9494,7 @@
 /* 80 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"eventRoot\">\r\n\t<span class=\"label receive topic\">socketIO receives</span>\r\n\t<input type=\"text\" class=\"receive topic\"></input>\r\n\t<span class=\"label\"> (is a regexp? </span>\r\n\t<input type=\"checkbox\" class=\"isRegExp\"></input>\r\n\t<span class=\"label\">)</span>\r\n\t<div class=\"filter\">\r\n\t\t<input type=\"button\" class=\"addFilter\" value=\"Add Filter\" />\r\n\t</div>\r\n</div>"
+	module.exports = "<div class=\"eventRoot\">\n\t<span class=\"label receive topic\">socketIO receives</span>\n\t<input type=\"text\" class=\"receive topic\"></input>\n\t<span class=\"label\"> (is a regexp? </span>\n\t<input type=\"checkbox\" class=\"isRegExp\"></input>\n\t<span class=\"label\">)</span>\n\t<div class=\"filter\">\n\t\t<input type=\"button\" class=\"addFilter\" value=\"Add Filter\" />\n\t</div>\n</div>"
 
 /***/ },
 /* 81 */
@@ -9880,7 +9880,7 @@
 /* 88 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"arrow\">\r\n\t<div class=\"eventSymbol\"></div>\r\n\t<div class=\"defwhen\">\r\n\t\t<div class=\"eventDrop\">\r\n\t\t\t<div class=\"ImplicitVariable\">\r\n\t\t\t\tLet's call the event source <div class=\"variableName Pnode Pselector_variable\">brick</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"event\">Drop EVENT here</div>\r\n\t\t</div>\r\n\t\t<img src=\"js/Presentations/HTML_templates/implySymbol.svg\"></img>\r\n\t\t<div class=\"instructions\">Drop REACTION here</div>\r\n\t</div>\r\n</div>\r\n\r\n"
+	module.exports = "<div class=\"arrow\">\n\t<div class=\"eventSymbol\"></div>\n\t<div class=\"defwhen\">\n\t\t<div class=\"eventDrop\">\n\t\t\t<div class=\"ImplicitVariable\">\n\t\t\t\tLet's call the event source <div class=\"variableName Pnode Pselector_variable\">brick</div>\n\t\t\t</div>\n\t\t\t<div class=\"event\">Drop EVENT here</div>\n\t\t</div>\n\t\t<img src=\"js/Presentations/HTML_templates/implySymbol.svg\"></img>\n\t\t<div class=\"instructions\">Drop REACTION here</div>\n\t</div>\n</div>\n\n"
 
 /***/ },
 /* 89 */
@@ -10534,7 +10534,7 @@
 /* 99 */
 /***/ function(module, exports) {
 
-	module.exports = "<label>a brick is \r\n<select class=\"operation\">\r\n\t<option value=\"appear\"   >Appearing</option>\r\n\t<option value=\"disappear\">Disappearing</option>\r\n</select>\r\namong\r\n</label>"
+	module.exports = "<label>a brick is \n<select class=\"operation\">\n\t<option value=\"appear\"   >Appearing</option>\n\t<option value=\"disappear\">Disappearing</option>\n</select>\namong\n</label>"
 
 /***/ },
 /* 100 */
@@ -10718,7 +10718,7 @@
 /* 103 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"\">all the \r\n\t<select class=\"brickType\">\r\n\t\t<option value=\"BrickUPnP_HueLamp\"\t\t>Hue lamps\t\t</option>\r\n\t\t<option value=\"BrickUPnP_MediaRenderer\"\t>Media Renderer\t</option>\r\n\t\t<option value=\"BrickUPnP_MediaServer\"\t>Media Servers\t</option>\r\n\t</select>\r\n</label>"
+	module.exports = "<label class=\"\">all the \n\t<select class=\"brickType\">\n\t\t<option value=\"BrickUPnP_HueLamp\"\t\t>Hue lamps\t\t</option>\n\t\t<option value=\"BrickUPnP_MediaRenderer\"\t>Media Renderer\t</option>\n\t\t<option value=\"BrickUPnP_MediaServer\"\t>Media Servers\t</option>\n\t</select>\n</label>"
 
 /***/ },
 /* 104 */
@@ -10842,7 +10842,7 @@
 /* 107 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Turn </label>\r\n<select class=\"OnOff\">\r\n\t<option value=\"Do_On\" >On </option>\r\n\t<option value=\"Do_Off\">Off</option>\r\n</select>"
+	module.exports = "<label class=\"turn\">Turn </label>\n<select class=\"OnOff\">\n\t<option value=\"Do_On\" >On </option>\n\t<option value=\"Do_Off\">Off</option>\n</select>"
 
 /***/ },
 /* 108 */
@@ -10963,7 +10963,7 @@
 /* 110 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">On turning </label>\r\n<select class=\"OnOff\">\r\n\t<option value=\"ON\" >On </option>\r\n\t<option value=\"OFF\">Off</option>\r\n</select>"
+	module.exports = "<label class=\"turn\">On turning </label>\n<select class=\"OnOff\">\n\t<option value=\"ON\" >On </option>\n\t<option value=\"OFF\">Off</option>\n</select>"
 
 /***/ },
 /* 111 */
@@ -11031,7 +11031,7 @@
 /* 112 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">\r\n\t<select class=\"contact\">\r\n\t\t<option value=\"Do_Open\" >Open </option>\r\n\t\t<option value=\"Do_Close\">Close</option>\r\n\t</select>\r\n</label>"
+	module.exports = "<label class=\"turn\">\n\t<select class=\"contact\">\n\t\t<option value=\"Do_Open\" >Open </option>\n\t\t<option value=\"Do_Close\">Close</option>\n\t</select>\n</label>"
 
 /***/ },
 /* 113 */
@@ -11094,7 +11094,7 @@
 /* 114 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Someone\r\n\t<select class=\"contact\">\r\n\t\t<option value=\"OPEN\"  >Opened</option>\r\n\t\t<option value=\"CLOSED\">Closed</option>\r\n\t</select>\r\n</label>"
+	module.exports = "<label class=\"turn\">Someone\n\t<select class=\"contact\">\n\t\t<option value=\"OPEN\"  >Opened</option>\n\t\t<option value=\"CLOSED\">Closed</option>\n\t</select>\n</label>"
 
 /***/ },
 /* 115 */
@@ -11178,7 +11178,7 @@
 /* 116 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Color in  \r\n\t<input type=\"color\" class=\"color\"></input>\r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Color in  \n\t<input type=\"color\" class=\"color\"></input>\n</label>\n"
 
 /***/ },
 /* 117 */
@@ -11238,7 +11238,7 @@
 /* 118 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Color changed for  \r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Color changed for  \n</label>\n"
 
 /***/ },
 /* 119 */
@@ -11311,7 +11311,7 @@
 /* 120 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Change value to \r\n\t<input type=\"text\" class=\"string\"></input>\r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Change value to \n\t<input type=\"text\" class=\"string\"></input>\n</label>\n"
 
 /***/ },
 /* 121 */
@@ -11371,7 +11371,7 @@
 /* 122 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Value has changed for  \r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Value has changed for  \n</label>\n"
 
 /***/ },
 /* 123 */
@@ -11444,7 +11444,7 @@
 /* 124 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Change Number value to \r\n\t<input type=\"number\" class=\"number\"></input>\r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Change Number value to \n\t<input type=\"number\" class=\"number\"></input>\n</label>\n"
 
 /***/ },
 /* 125 */
@@ -11504,7 +11504,7 @@
 /* 126 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">Value has changed for Number \r\n</label>\r\n"
+	module.exports = "<label class=\"turn\">Value has changed for Number \n</label>\n"
 
 /***/ },
 /* 127 */
@@ -11574,7 +11574,7 @@
 /* 128 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">\r\n\tRollerShutter action\r\n\t<select class=\"RollerShutter\">\r\n\t\t<option value= \"Do_UP\" >Up  </option>\r\n\t\t<option value=\"Do_DOWN\">Down</option>\r\n\t\t<option value=\"Do_MOVE\">Move</option>\r\n\t\t<option value=\"Do_STOP\">Stop</option>\r\n\t\t<!--<option value=\"Do_PERCENT\">\r\n\t\t\t<input type=\"range\" min=\"0\" max=\"1\" step=\"1\" value=\"50\"></input>\r\n\t\t</option>-->\r\n\t</select>\r\n</label>"
+	module.exports = "<label class=\"turn\">\n\tRollerShutter action\n\t<select class=\"RollerShutter\">\n\t\t<option value= \"Do_UP\" >Up  </option>\n\t\t<option value=\"Do_DOWN\">Down</option>\n\t\t<option value=\"Do_MOVE\">Move</option>\n\t\t<option value=\"Do_STOP\">Stop</option>\n\t\t<!--<option value=\"Do_PERCENT\">\n\t\t\t<input type=\"range\" min=\"0\" max=\"1\" step=\"1\" value=\"50\"></input>\n\t\t</option>-->\n\t</select>\n</label>"
 
 /***/ },
 /* 129 */
@@ -11640,7 +11640,7 @@
 /* 130 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"turn\">\r\n\tRollerShutter event\r\n\t<select class=\"RollerShutter\">\r\n\t\t<option value= \"UP\" >Up  </option>\r\n\t\t<option value=\"DOWN\">Down</option>\r\n\t\t<option value=\"MOVE\">Move</option>\r\n\t\t<option value=\"STOP\">Stop</option>\r\n\t</select>\r\n</label>"
+	module.exports = "<label class=\"turn\">\n\tRollerShutter event\n\t<select class=\"RollerShutter\">\n\t\t<option value= \"UP\" >Up  </option>\n\t\t<option value=\"DOWN\">Down</option>\n\t\t<option value=\"MOVE\">Move</option>\n\t\t<option value=\"STOP\">Stop</option>\n\t</select>\n</label>"
 
 /***/ },
 /* 131 */

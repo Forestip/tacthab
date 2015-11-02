@@ -1,14 +1,17 @@
 <!doctype html>
-
-<html>
-<head>	
-	<title>UPnP</title>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="bundleUPnP.css"></link>
-	<script src="bundleUPnP.js" defer></script>
+<html ng-app="squidrel_app">
+<head>
+    <title>Squidrel</title>
+    <meta charset="utf-8"/>
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="bundleUPnP.js" defer></script>
+    <link rel="stylesheet" href="bundleUPnP.css"></link>
 </head>
-<body>
-	<h1>UPnP</h1>
-	<p>Look at the console and the javascript file...</p>
+<body ng-controller="squidrelController as sc">
+<h1>Squidrel</h1>
+
+<div ng-repeat="server in sc.data">
+    <p>{{server}}</p>
+</div>
 </body>
 </html>

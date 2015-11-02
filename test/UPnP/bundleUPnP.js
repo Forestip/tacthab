@@ -44,31 +44,42 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var utils				= __webpack_require__( 1 )
-	  ;
-	  
-	__webpack_require__( 52 );
-
-
-	console.log("Accessing server to get context.");
-	var getContext = utils.XHR( 'GET', '/getContext');
-	getContext.then	( function(response) {
-						 var json = JSON.parse( response.responseText )
-						 console.log(json);
-						}
-					, function(err) {console.error(err);}
-					);
-	// Subscribing to appearing/disappearing events
+	/**
+	 * Created by paf on 02/11/15.
+	 */
+	var utils = __webpack_require__(1);
 	utils.initIO(window.location.origin + "/m2m");
-	utils.io.on	( "brickAppears"
-				, function(json) {console.log("brickAppears:", json);
-								 }
-				);
-	utils.io.on	( "brickDisappears"
-				, function(json) {console.log("brickDisappears:", json);
-								 }
-				);
 
+	angular.module('squidrel_app', [])
+	    .controller('squidrelController', function ($scope) {
+	        var squidrelController = this;
+	        this.data = {};
+
+	        var getContext = utils.XHR('GET', '/getContext');
+	        getContext.then(function (response) {
+	                var json = JSON.parse(response.responseText)
+	                squidrelController.data = json.bricks;
+	                $scope.$apply();
+	            }
+	            , function (err) {
+	                console.error(err);
+	            }
+	        );
+	        utils.io.on("brickAppears"
+	            , function (json) {
+	                console.log("brickAppears:", json);
+	                squidrelController.data[json.id] = json;
+	                $scope.$apply();
+	                console.log(squidrelController.data);
+	            }
+	        );
+	        utils.io.on("brickDisappears"
+	            , function (json) {
+	                //TODO remove and apply scope
+	                console.log("brickDisappears:", json);
+	            }
+	        );
+	    });
 
 
 /***/ },
@@ -116,7 +127,7 @@
 								);
 		}
 		, initIO: function() {
-			 this.io = io.apply(null, arguments);
+			 this.io = this.io || io.apply(null, arguments);
 			}
 		// , io	: io()
 		, call	: function(objectId, method, params, cb) {
@@ -128,12 +139,15 @@
 				 call.callId = callId++;
 				}
 			 // console.log( "Calling", call);
-			 utils.io.emit	( 'call', call
-							, function(data){
-								 // console.log("Call", call.callId, " returns", data);
-								 if(cb) {cb(data);}
-								}
-							);
+			 return new Promise	( function(resolve, reject) {
+				 utils.io.emit	( 'call', call
+								, function(data){
+									 // console.log("Call", call.callId, " returns", data);
+									 if(cb) {cb(data);}
+									 resolve(data);
+									}
+								);
+				});
 			}
 		, getUrlEncodedParameters	: function(a) {
 			 if(typeof a === 'string') {
@@ -7367,12 +7381,6 @@
 	};
 
 
-
-/***/ },
-/* 52 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

@@ -45,7 +45,7 @@ var gulp				= require('gulp')
 
 gulp.task('lint', function () {
     return gulp.src	( [ './js/**/*.js'
-					  , './upnp.js'
+					  , './app.js'
 					  ]
 					)
 		.pipe(cached('scripts'))
@@ -59,7 +59,7 @@ gulp.task("webpack", function(callback) {
     // run webpack
     webpack({
 			entry	: {
-				bundleUPnP		: "./upnp.js"
+				bundleUPnP		: "./app.js"
 			},
 			output	: {
 				path			: "./",
@@ -99,7 +99,7 @@ gulp.task("webpack", function(callback) {
 var filesToWatch =	[ './css/**/*.css'
 					, './js/**/*.js'
 					, './js/**/*.css'
-					, './upnp.js'
+					, './app.js'
 					, './upnp.css'
 					];
 
