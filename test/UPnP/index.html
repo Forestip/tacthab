@@ -12,11 +12,24 @@
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
 
 </head>
-<body ng-controller="squidrelController as sc">
+<body ng-controller="squidrelController as sc"><!--
 <h1>Squidrel</h1>
 
 <div ng-repeat="server in sc.data">
     <p>{{server}}</p>
+</div>-->
+<div id="wrapper" class="container-fluid">
+    <div id="sky_wrapper" class="container-fluid">
+        <div class="container-fluid bg_sky_wrapper">
+        </div>
+        <div class="container-fluid bg_sky_wrapper">
+            <div class="building bottom_two"></div>
+        </div>
+    </div>
+    <div class="container-fluid bg_zone_wrapper">
+        <div class="building bottom_one"></div>
+    </div>
 </div>
+
 </body>
 </html>

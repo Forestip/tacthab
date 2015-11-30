@@ -1,4 +1,8 @@
-h1 {
-	text-align: center;
-	background: yellow;
+
+html, body{
+    height: 100%;
+    min-height: 100%;
+}
+#wrapper{
+    height: 100%;
 }

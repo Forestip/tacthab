@@ -1,4 +1,48 @@
-h1 {
-	text-align: center;
-	background: yellow;
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+#wrapper {
+    height: 100%;
+
+}
+
+#sky_wrapper{
+    height : 67%;
+    margin: 0;
+    padding: 0;
+    background: url('assets/img/flat_landscape.jpg');
+    background-size: cover;
+    background-position : center bottom;
+}
+
+.bg_zone_wrapper {
+    height: 33%;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    background:#250302;
+}
+
+.bg_sky_wrapper{
+    height: 50%;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+}
+
+.building {
+    width: 300px;
+    height: 300px;
+    background: url('assets/img/building-icon.png');
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom_one {
+    margin-left: 10%;
+}.bottom_two {
+    margin-left: 40%;
 }
