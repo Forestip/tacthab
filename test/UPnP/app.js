@@ -54,13 +54,7 @@ angular.module('squidrel_app', [])
             , function (json) {
                 //TODO remove and apply scope
                 console.log("brickDisappears:", json);
-
-                // on fait disparaitre le building
-                var building = $('#'+json.brickId+'');
-
-                building.parent().removeClass('active');
-
-                building.remove();
+                GridUI.removeBuilding(json.brickId);
             }
         );
 
