@@ -68,7 +68,20 @@ angular.module('squidrel_app', [])
  */
 function browse(str) {
 
-    var $data = $.parseXML(str);
+    // parsing de la reponse
+    var response = $.parseXML(str);
+
+    var $xmlResponse = $(response);
+
+    var $result = $xmlResponse.find('Result');
+
+    var content = $.parseXML($result.text());
+    var $xmlContent = $(content);
+
+    // pour chaqque élément
+    $xmlContent.find('container').each(function(){
+        console.log(this);
+    });
 
 
 }
