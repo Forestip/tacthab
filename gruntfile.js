@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = function(grunt) {
   var files =	[ './js/**/*.js'
 				, './TactHab_modules/**/*.js'
-				// , './test/**/*.js'
+				, './test/**/*.js'
 				, '!./js/require.js'
 				, '!./js/domReady.js'
 				, '!./js/async.js'

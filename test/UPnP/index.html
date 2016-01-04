@@ -26,9 +26,7 @@
         <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
     </div>
     <div id="ground" class="row line_wrapper">
-        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper 0">
-            <div class="towel"></div>
-        </div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper 0"></div>
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
@@ -38,10 +36,12 @@
 </div>
 <script type="text/javascript">
     var GridUI = {
-        addBuilding : function(){
+        addBuilding : function(server){
             var freePlaces = $('#ground').children('.col_wrapper').not('.active');
             var newBuilding = freePlaces.eq(Math.floor(Math.random() * freePlaces.length));
             newBuilding.addClass('active');
+
+            newBuilding.append('<div class="towel" id="'+server.id+'"><p>'+server.name+'</p></div>');
         }
     }
 </script>

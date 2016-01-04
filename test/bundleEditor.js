@@ -9500,7 +9500,7 @@
 /* 81 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"filter\">\r\n\t<input type=\"text\" class=\"attribute\"></input>\r\n\t<select name=\"cars\", class=\"operator\">\r\n\t\t<option value=\"equal\">equal</option>\r\n\t\t<option value=\"different\">different</option>\r\n\t\t<option value=\"greater\">greater than</option>\r\n\t\t<option value=\"greaterOrEqual\">greater or equal than</option>\r\n\t\t<option value=\"lower\">lower than</option>\r\n\t\t<option value=\"lowerOrEqual\">lower or equal than</option>\r\n\t</select>\r\n\t<input type=\"text\"   class=\"value\"></input>\r\n\t<input type=\"button\" class=\"delete\" value=\"delete\"></input>\r\n</div>"
+	module.exports = "<div class=\"filter\">\n\t<input type=\"text\" class=\"attribute\"></input>\n\t<select name=\"cars\", class=\"operator\">\n\t\t<option value=\"equal\">equal</option>\n\t\t<option value=\"different\">different</option>\n\t\t<option value=\"greater\">greater than</option>\n\t\t<option value=\"greaterOrEqual\">greater or equal than</option>\n\t\t<option value=\"lower\">lower than</option>\n\t\t<option value=\"lowerOrEqual\">lower or equal than</option>\n\t</select>\n\t<input type=\"text\"   class=\"value\"></input>\n\t<input type=\"button\" class=\"delete\" value=\"delete\"></input>\n</div>"
 
 /***/ },
 /* 82 */
@@ -10255,7 +10255,7 @@
 /* 94 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"content\">\r\n\t<span class=\"label labelPrograms\">For programs</span>\r\n\t<span class=\"programs\">[DROP PROGRAMS HERE]</span>\r\n\t<span class=\"label\">, </span>\r\n\t<select class=\"forbidden\" value=\"true\">\r\n\t\t<option value=\"true\">Forbid</option>\r\n\t\t<option value=\"false\">Allow</option>\r\n\t</select>\r\n\t<span class=\"targets\">[DROP TARGETS HERE]</span>\r\n\t<span class=\"label\">to call</span>\r\n\t<select class=\"actions\" />\r\n</div>"
+	module.exports = "<div class=\"content\">\n\t<span class=\"label labelPrograms\">For programs</span>\n\t<span class=\"programs\">[DROP PROGRAMS HERE]</span>\n\t<span class=\"label\">, </span>\n\t<select class=\"forbidden\" value=\"true\">\n\t\t<option value=\"true\">Forbid</option>\n\t\t<option value=\"false\">Allow</option>\n\t</select>\n\t<span class=\"targets\">[DROP TARGETS HERE]</span>\n\t<span class=\"label\">to call</span>\n\t<select class=\"actions\" />\n</div>"
 
 /***/ },
 /* 95 */
