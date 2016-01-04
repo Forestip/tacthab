@@ -12,24 +12,39 @@
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
 
 </head>
-<body ng-controller="squidrelController as sc"><!--
-<h1>Squidrel</h1>
-
-<div ng-repeat="server in sc.data">
-    <p>{{server}}</p>
-</div>-->
+<body ng-controller="squidrelController as sc">
 <div id="wrapper" class="container-fluid">
-    <div id="sky_wrapper" class="container-fluid">
-        <div class="container-fluid bg_sky_wrapper">
+    <div class="row line_wrapper">
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper">
         </div>
-        <div class="container-fluid bg_sky_wrapper">
-            <div class="building bottom_two"></div>
-        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
     </div>
-    <div class="container-fluid bg_zone_wrapper">
-        <div class="building bottom_one"></div>
+    <div class="row line_wrapper">
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper"></div>
+    </div>
+    <div id="ground" class="row line_wrapper">
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper 0">
+            <div class="towel"></div>
+        </div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
+        <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
     </div>
 </div>
+<script type="text/javascript">
+    var GridUI = {
+        addBuilding : function(){
+            var freePlaces = $('#ground').children('.col_wrapper').not('.active');
+            var newBuilding = freePlaces.eq(Math.floor(Math.random() * freePlaces.length));
+            newBuilding.addClass('active');
+        }
+    }
+</script>
 
 </body>
 </html>
