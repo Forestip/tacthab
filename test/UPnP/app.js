@@ -32,7 +32,6 @@ angular.module('squidrel_app', [])
                 console.log(squidrelController.data);
 
                 // ajout de l'imeuble correspondant au media serveur
-                //$('#wrapper').append('<div class="building" id="'+json.id+'"><p>'+json.name+'</p></div>');
                 GridUI.addBuilding(json);
 
                 // lors du clic sur le building
@@ -70,8 +69,6 @@ angular.module('squidrel_app', [])
 function browse(str) {
 
     var $data = $.parseXML(str);
-
-    console.log($data);
 
 
 }

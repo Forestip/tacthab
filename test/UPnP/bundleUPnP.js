@@ -78,7 +78,6 @@
 	                console.log(squidrelController.data);
 
 	                // ajout de l'imeuble correspondant au media serveur
-	                //$('#wrapper').append('<div class="building" id="'+json.id+'"><p>'+json.name+'</p></div>');
 	                GridUI.addBuilding(json);
 
 	                // lors du clic sur le building
@@ -100,13 +99,7 @@
 	            , function (json) {
 	                //TODO remove and apply scope
 	                console.log("brickDisappears:", json);
-
-	                // on fait disparaitre le building
-	                var building = $('#'+json.brickId+'');
-
-	                building.parent().removeClass('active');
-
-	                building.remove();
+	                GridUI.removeBuilding(json.brickId);
 	            }
 	        );
 
@@ -122,8 +115,6 @@
 	function browse(str) {
 
 	    var $data = $.parseXML(str);
-
-	    console.log($data);
 
 
 	}

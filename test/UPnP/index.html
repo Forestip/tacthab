@@ -50,7 +50,6 @@
                 <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -81,12 +80,12 @@
 
             $('.col_wrapper').on("click", "div", function() {
                 $('#dataUPNPModal').modal('toggle');
-                GridUI.addUPNPContent();
+                GridUI.setUPNPContent();
             });
         },
         setUPNPContent: function () {
-            var contentTitle = $('#dataUPNPModal.modal-title p');
-            var contentWrapper =  $('#dataUPNPModal.modal-body p');
+            var contentTitle = $('#dataUPNPModal.modal-title');
+            var contentWrapper =  $('#dataUPNPModal.modal-body');
         }
     }
     GridUI.init();
