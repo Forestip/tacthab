@@ -8,7 +8,9 @@ angular.module('squidrel_app', [])
 
     .controller('squidrelController', function ($scope) {
         var squidrelController = this;
-        this.data = {};
+        $scope.data = {};
+
+        $scope.mediaRenderer = {};
 
         var getContext = utils.XHR('GET', '/getContext');
 
@@ -25,100 +27,109 @@ angular.module('squidrel_app', [])
         // lorsqu'on lance un media server
         utils.io.on("brickAppears"
             , function (json) {
-
                 console.log("brickAppears:", json);
-                squidrelController.data[json.id] = json;
+                $scope.data[json.id] = json;
                 $scope.$apply();
 
-                // ajout de l'imeuble correspondant au media serveur
-                GridUI.addBuilding(json);
+                if (json.type[2] == 'BrickUPnP_MediaRenderer') {
+                    $scope.mediaRenderer[json.id] = json;
+                    $scope.$apply();
+                } else if (json.type[2] == 'BrickUPnP_MediaServer') {
+                    // ajout de l'imeuble correspondant au media serveur
+                    GridUI.addBuilding(json);
+                }
 
-                // lors du clic sur le building
-                $('#'+json.id+'').click(function(){
-                    
-                    console.log('Browsing server '+json.id);
+                // lorsqu'on ferme un media server
+                utils.io.on("brickDisappears"
+                    , function (json) {
+                        console.log("brickDisappears:", json);
+                        GridUI.removeBuilding(json.brickId);
+                        delete $scope.data[json.brickId];
+                        delete $scope.mediaRenderer[json.brickId];
+                        $scope.$apply();
+                    }
+                );
+            });
 
-                    // tableau de l'arborescence 
-                    // TODO ==> a convertir en json pour la treeview
-                    var tree;
+        /**
+         * Parcourir un dossier
+         */
+        $scope.browse = function (serverId, folderId) {
+            utils.call(serverId, 'Browse', [folderId], function (str) {
+                var folderContent = _parseXml(str);
+                getTree(folderContent, serverId, folderId);
+            });
+        };
 
-                    // on parcoure le dossier racine du media server
-                    browse(json.id, 0, tree);
+        $scope.load = function (mediaRendererID, serverID, itemID) {
+            utils.call(mediaRendererID, 'loadMedia', [serverID, itemID], function (str) {
+                var res = _parseXml(str);
+            });
+        };
 
-                    console.log(tree);
+        $scope.play = function (mediaRendererID) {
+            utils.call(mediaRendererID, 'Play', [], function (str) {
+                var res = _parseXml(str);
+            });
+        };
 
-                })
-            }
-        );
+        $scope.pause = function (mediaRendererID) {
+            utils.call(mediaRendererID, 'Pause', [], function (str) {
+                var res = _parseXml(str);
+            });
+        };
 
-        // lorsqu'on ferme un media server
-        utils.io.on("brickDisappears"
-            , function (json) {
-                //TODO remove and apply scope
-                console.log("brickDisappears:", json);
-                GridUI.removeBuilding(json.brickId);
-            }
-        );
+        $scope.stop = function (mediaRendererID) {
+            utils.call(mediaRendererID, 'Stop', [], function (str) {
+                var res = _parseXml(str);
+                console.log(res);
+            });
+        };
 
+        $scope.setVolume = function (mediaRendererID, volume) {
+            utils.call(mediaRendererID, 'setVolume', [volume], function (str) {
+                var res = _parseXml(str);
+                console.log(res);
+            });
+        };
 
+        /**
+         * parsing de la reponse en xml
+         */
+        _parseXml = function (str) {
+            var response = $.parseXML(str);
+            var xmlResponse = $(response);
+            var result = xmlResponse.find('Result');
+            var content = $.parseXML(result.text());
+            return $(content);
+        };
 
+        getTree = function (xmlContent, serverId, parentFolderId) {
+            // pour chaque element
+            xmlContent.find('container').each(function () {
+                var id = $(this)[0].id;
+                var name = $(this).find('title').text();
+                GridUI.setFolder(serverId, id, name, parentFolderId)
+            });
+
+            xmlContent.find('item').each(function () {
+                var id = $(this)[0].id;
+                var name = $(this).find('title').text();
+                var thumb = 'assets/img/item_icon.png';
+
+                //Récupération des metadat pour une image
+                //var sid=$.trim(serverId)
+                utils.call(serverId, 'getMetaData', [id], function (str) {
+                    var metaData = _parseXml(str);
+                    //TODO
+                    // thumb = '';
+   /*                 console.log(metaData);
+                    console.log(metaData[0]);
+                    console.log(metaData[0].childNodes);
+                    console.log(metaData.childNotes[6].innerHTML);*/
+                });
+                //getMetadata photo: element[0].childNotes[6].innerHTML
+                GridUI.setItem(serverId, id, name, thumb)
+            });
+        };
     });
-
-
-
-/**
- * Parcourir un dossier
- */
-function browse(serverId, folderId, tree) {
-
-    utils.call(serverId, 'Browse', [folderId], function(str){
-        var folderContent = _parseXml(str);
-        getTree(folderContent, tree, serverId);
-    });
-
-}
-
-/**
- * parsing de la reponse en xml
- */
-function _parseXml(str){
-    var response = $.parseXML(str);
-
-    var xmlResponse = $(response);
-
-    var result = xmlResponse.find('Result');
-
-    var content = $.parseXML(result.text());
-
-    return $(content);
-}
-
-/**
- * genère l'arborescence sous forme de tableau json
- */
-function getTree(xmlContent, tree, serverId){
-
-
-    // pour chaque element
-    xmlContent.find('container').each(function(){
-
-        var element = $(this);
-
-        //on récupère le titre de l'element
-        var title = element.find('title').text();
-
-        console.log(title);
-
-        // TODO ==> ajouter le title de l'element dans le tableau tree pour l'affichage 
-
-        // TODO ==> parcourir les sous dossier 
-        // j'ai essayé en rappellant browse() mais ça fait une boucle infinie (parce que browse() rapelle getTree...)
-        // par contre dans la boucle infinie on voit bien que ça affiche les sous dossier, donc on est pas loin !!!!
-        // j'en peux plus
-        // je vais me suicider
-        // ...
-        // ...
-        // ...
-        // en gros il faut trouver un moyen de différencier les dossiers des fichiers, pour qu'il ne browse que les dossiers
-    });
-}

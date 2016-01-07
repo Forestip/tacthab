@@ -11,9 +11,21 @@
     <link rel="stylesheet" href="bundleUPnP.css"></link>
     <link rel="stylesheet" href="animate.min.css">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 </head>
-<body ng-controller="squidrelController as sc">
+<body id="squidrelController" ng-controller="squidrelController as sc">
+
+<div id="details">
+    <div id="closeButton" class="row">
+    </div>
+    <div id="arianne" class="row"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;Retour</div>
+    <br/>
+
+    <div id="explorer">
+    </div>
+</div>
+
 <div id="wrapper" class="container-fluid">
     <div class="row line_wrapper">
         <div class="col-md-4 col-sm-4 col-xs-4 col_wrapper">
@@ -28,7 +40,6 @@
     </div>
     <div id="ground" class="row line_wrapper">
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper ">
-            <div class="towel"></div>
         </div>
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
@@ -37,31 +48,10 @@
         <div class="col-md-2 col-xs-2 col-sm-2 col_wrapper"></div>
     </div>
 </div>
-
-
-<!-- Modal -->
-<div id="dataUPNPModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- END MODAL-->
 
 <script type="text/javascript">
     var GridUI = {
+        _parent: 0,
         init: function () {
             this.initBehavior();
         },
@@ -69,23 +59,123 @@
             var freePlaces = $('#ground').children('.col_wrapper').not('.active');
             var newBuilding = freePlaces.eq(Math.floor(Math.random() * freePlaces.length));
             newBuilding.addClass('active animated bounceInUp');
-            newBuilding.append('<div class="towel" id="' + server.id + '"><p>' + server.name + '</p></div>');
+            //TODO rando
+            newBuilding.append('<div class="building3" id="' + server.id + '"><p>' + server.name + '</p></div>');
         },
         removeBuilding: function (idServer) {
-            var building = $('#'+idServer+'');
+            var building = $('#' + idServer + '');
             building.parent().removeClass('active');
             building.remove();
         },
         initBehavior: function () {
 
-            $('.col_wrapper').on("click", "div", function() {
-                $('#dataUPNPModal').modal('toggle');
-                GridUI.setUPNPContent();
+            $('#closeButton').click(function () {
+                GridUI.resetExplorer();
+                $("#details").removeClass('open');
+                $('#wrapper').show();
+            });
+
+            $('.col_wrapper').on("click", "div", function () {
+                $("#details").addClass('open');
+                $('#wrapper').hide();
+                $("#closeButton").text($(this).children('p').first().text());
+                angular.element('#squidrelController').scope().browse(
+                        $(this).attr('id'), 0
+                );
+            });
+
+            $('#explorer').on("click", ".folder", function () {
+                GridUI.resetExplorer();
+                angular.element('#squidrelController').scope().browse(
+                        $(this).attr('data-server-id'), $(this).attr('id')
+                );
+                GridUI.addArianneFil($(this).attr('data-server-id'));
+            });
+
+            $('#explorer').on("click", ".item", function () {
+                GridUI.addPlayer($(this));
+            });
+
+            $('body').on('click', '.play', function () {
+                var server_id = $(this).parent('.controls').parent('.player').parent().attr('data-server-id');
+                var item_id = $(this).parent('.controls').parent('.player').parent().attr('id');
+                var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
+                angular.element('#squidrelController').scope().play(mediarendererid);
+            });
+            $('body').on('click', '.pause', function () {
+                var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
+                angular.element('#squidrelController').scope().pause(mediarendererid);
+            });
+            $('body').on('click', '.stop', function () {
+                var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
+                angular.element('#squidrelController').scope().stop(mediarendererid);
+            });
+            $('body').on('change', '.volume', function () {
+                var mediarendererid = $(this).parent().parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
+                var volume = $(this).val();
+                angular.element('#squidrelController').scope().setVolume(mediarendererid,volume);
+            });
+
+            $('.mediarendererSelect').change(function(){
+               console.log('yolod old');
+            });
+            $('body').on('change', '.mediarendererSelect', function () {
+                console.log('changed');
+                var mediarendererid = $(this).parent('.mediarenderer').parent('.player').children('.mediarenderer').children('select').val();
+                var server_id = $(this).parent('.mediarenderer').parent('.player').parent().attr('data-server-id');
+                var item_id = $(this).parent('.mediarenderer').parent('.player').parent().attr('id');
+                angular.element('#squidrelController').scope().load(mediarendererid, server_id, item_id);
             });
         },
-        setUPNPContent: function () {
-            var contentTitle = $('#dataUPNPModal.modal-title');
-            var contentWrapper =  $('#dataUPNPModal.modal-body');
+
+        setFolder: function (serverId, id, name, parentFolderId) {
+            GridUI._parent = parentFolderId;
+            console.log(GridUI._parent);
+            $('#explorer').append('<div class="row"><div class="col-md-4 folder" id="' + id + '" data-server-id="' + serverId + '"><img src="assets/img/folder_icon.png" alt="Item icon" height="50" width="50">&nbsp;' + name + '</div></div>');
+        },
+
+        setItem: function (serverId, id, name, thumb) {
+            $('#explorer').append('<div class="item" id="' + id + '" data-server-id="' + serverId + '"><img src="' + thumb + '" alt="Item icon" height="50" width="50">&nbsp;' + name + '</div>');
+        },
+
+        addArianneFil: function (serverID) {
+            $('#arianne').attr('data-server-id', serverID);
+            $('#arianne').click(function () {
+                GridUI.resetExplorer();
+                angular.element('#squidrelController').scope().browse(
+                        $(this).attr('data-server-id'), GridUI._parent
+                );
+            });
+        },
+
+        resetExplorer: function () {
+            $('#explorer').html('');
+        },
+        addPlayer: function (domItem) {
+            if (domItem.children('.player').length == 0) {
+                var domPlayer = '<div class="row player" style="margin: 0">' +
+                        '<div class="row mediarenderer" style="margin: 0">' +
+                        '<label>Choisissez un media renderer : </label>' +
+                        '<select class="mediarendererSelect"></select>' +
+                        '</div><hr/>'+
+                        '<div class="row controls" style="margin: 0">' +
+                        '<img class="playerButton play" src="assets/img/play.png"/>' +
+                        '<img class="playerButton pause" src="assets/img/pause.png"/>' +
+                        '<img class="playerButton stop" src="assets/img/stop.png"/>' +
+                        '<div class="playerButton volumeContainer">' +
+                        '<input class="volume" type="range">' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+                domItem.append(domPlayer);
+
+                domItem.find('.mediarenderer').find('select').append('<option selected="selected">...</option>');
+                $.each(angular.element('#squidrelController').scope().mediaRenderer, function (key, value) {
+                    domItem.find('.mediarenderer').find('select').append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+
+            }
         }
     }
     GridUI.init();
