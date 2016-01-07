@@ -169,10 +169,7 @@
 	                    var metaData = _parseXml(str);
 	                    //TODO
 	                    // thumb = '';
-	   /*                 console.log(metaData);
-	                    console.log(metaData[0]);
-	                    console.log(metaData[0].childNodes);
-	                    console.log(metaData.childNotes[6].innerHTML);*/
+	      
 	                });
 	                //getMetadata photo: element[0].childNotes[6].innerHTML
 	                GridUI.setItem(serverId, id, name, thumb)

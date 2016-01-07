@@ -19,7 +19,8 @@
 <div id="details">
     <div id="closeButton" class="row">
     </div>
-    <div id="arianne" class="row"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;Retour</div>
+    <div id="arianne" class="row"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;Retour
+    </div>
     <br/>
 
     <div id="explorer">
@@ -100,24 +101,48 @@
                 var server_id = $(this).parent('.controls').parent('.player').parent().attr('data-server-id');
                 var item_id = $(this).parent('.controls').parent('.player').parent().attr('id');
                 var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
-                angular.element('#squidrelController').scope().play(mediarendererid);
+                if (mediarendererid == '...') {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('Merci de sélectionner un MediaRenderer avant toute action');
+                } else {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('');
+                    angular.element('#squidrelController').scope().play(mediarendererid);
+                }
             });
             $('body').on('click', '.pause', function () {
                 var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
-                angular.element('#squidrelController').scope().pause(mediarendererid);
+                if (mediarendererid == '...') {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('Merci de sélectionner un MediaRenderer avant toute action');
+                } else {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('');
+                    angular.element('#squidrelController').scope().pause(mediarendererid);
+                }
+
             });
             $('body').on('click', '.stop', function () {
                 var mediarendererid = $(this).parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
-                angular.element('#squidrelController').scope().stop(mediarendererid);
+
+                if (mediarendererid == '...') {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('Merci de sélectionner un MediaRenderer avant toute action');
+                } else {
+                    $(this).parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('');
+                    angular.element('#squidrelController').scope().stop(mediarendererid);
+                }
             });
             $('body').on('change', '.volume', function () {
                 var mediarendererid = $(this).parent().parent('.controls').parent('.player').children('.mediarenderer').children('select').val();
-                var volume = $(this).val();
-                angular.element('#squidrelController').scope().setVolume(mediarendererid,volume);
+
+                if (mediarendererid == '...') {
+                    $(this).parent().parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('Merci de sélectionner un MediaRenderer avant toute action');
+                } else {
+                    $(this).parent().parent('.controls').parent('.player').children('.mediarenderer').children('.error').text('');
+                    var volume = $(this).val();
+                    angular.element('#squidrelController').scope().setVolume(mediarendererid, volume);
+                }
+
             });
 
-            $('.mediarendererSelect').change(function(){
-               console.log('yolod old');
+            $('.mediarendererSelect').change(function () {
+                console.log('yolod old');
             });
             $('body').on('change', '.mediarendererSelect', function () {
                 console.log('changed');
@@ -157,7 +182,8 @@
                         '<div class="row mediarenderer" style="margin: 0">' +
                         '<label>Choisissez un media renderer : </label>' +
                         '<select class="mediarendererSelect"></select>' +
-                        '</div><hr/>'+
+                        '<div class="error" style="color:darkred"></div>' +
+                        '</div><hr/>' +
                         '<div class="row controls" style="margin: 0">' +
                         '<img class="playerButton play" src="assets/img/play.png"/>' +
                         '<img class="playerButton pause" src="assets/img/pause.png"/>' +
